@@ -7,17 +7,17 @@
  */
 void _eputs(char *str)
 {
-/*introducing parameter for function*/
-int i = 0;
+	/*introducing parameter for function*/
+	int i = 0;
 
-/*introducing conditional statement*/
-if (!str)
-return;
-while (str[i] != '\0')
-{
-_eputchar(str[i]);
-i++;
-}
+	/*introducing conditional statement*/
+	if (!str)
+		return;
+	while (str[i] != '\0')
+	{
+		_eputchar(str[i]);
+		i++;
+	}
 }
 
 /**
