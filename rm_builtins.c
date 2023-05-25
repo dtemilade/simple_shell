@@ -1,20 +1,73 @@
 #include "shell.h"
 
 /**
- * _grpfnshelp - function that changes the current directory of the process
- * @info: parameter for potential arguments.
- * Return: Always 0
+ * print_alias - function that prints an alias string
+ * @node: parameter for the alias node
+ *
+ * Return: Always 0 on success, 1 on error
  */
-int _grpfnshelp(info_t *info)
+int print_alias(list_t *node)
 {
-char **arg_array;
+char *a = NULL, *ptr = NULL;
 
-arg_array = info->argv;
-_puts("help call worws fine. But function not fully implemented yet \n");
-if (0)
-_puts(*arg_array);
+if (node)
+{
+ptr = _strchr(node->str, '=');
+for (a = node->str; a <= ptr; a++)
+_putchar(*a);
+_putchar('\'');
+_puts(ptr + 1);
+_puts("'\n");
 return (0);
 }
+return (1);
+}
+/**
+ * unset_alias - function that sets alias to string
+ * @info: parameter for struct
+ * @str: parameter for the string alias
+ *
+ * Return: Always 0 on success, 1 on error
+ */
+int unset_alias(info_t *info, char *str)
+{
+/*introducing parameters*/
+char *ptr, c;
+int ret;
+
+ptr = _strchr(str, '=');
+if (!ptr)
+return (1);
+c = *ptr;
+*ptr = 0;
+ret = deleten_at_index(&(info->alias),
+getn_index(info->alias, node_starts_with(info->alias, str, -1)));
+*ptr = c;
+return (ret);
+}
+/**
+ * set_alias - function that sets alias to string
+ * @info: parameter for struct
+ * @str: parameter forstring 
+ *
+ * Return: Always 0 on success, 1 on error
+ */
+int set_alias(info_t *info, char *str)
+{
+/*introducing parameter for function*/
+char *ptr;
+
+ptr = _strchr(str, '=');
+/*introducing conditional statement*/
+if (!ptr)
+return (1);
+if (!*++ptr)
+return (unset_alias(info, str));
+
+unset_alias(info, str);
+return (addn_end(&(info->alias), str, 0) == NULL);
+}
+
 
 /**
  * _grpfnshistory - function that displays the history list
@@ -60,50 +113,4 @@ print_alias(node_starts_with(info->alias, info->argv[i], '='));
 }
 
 return (0);
-}
-
-/**
- * set_alias - function that sets alias to string
- * @info: parameter for struct
- * @str: parameter forstring
- *
- * Return: Always 0 on success, 1 on error
- */
-int set_alias(info_t *info, char *str)
-{
-/*introducing parameter for function*/
-char *ptr;
-
-ptr = _strchr(str, '=');
-/*introducing conditional statement*/
-if (!ptr)
-return (1);
-if (!*++ptr)
-return (unset_alias(info, str));
-
-unset_alias(info, str);
-return (addn_end(&(info->alias), str, 0) == NULL);
-}
-
-/**
- * print_alias - function that prints an alias string
- * @node: parameter for the alias node
- *
- * Return: Always 0 on success, 1 on error
- */
-int print_alias(list_t *node)
-{
-char *a = NULL, *ptr = NULL;
-
-if (node)
-{
-ptr = _strchr(node->str, '=');
-for (a = node->str; a <= p; a++)
-_putchar(*a);
-_putchar('\'');
-_puts(ptr + 1);
-_puts("'\n");
-return (0);
-}
-return (1);
 }

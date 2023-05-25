@@ -1,3 +1,5 @@
+#include "shell.h"
+
 /**
  * sigintHandler - function that blocks ctrl-C
  * @sig_num: parameter for the signal number

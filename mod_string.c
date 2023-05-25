@@ -24,7 +24,7 @@ char *find_path(info_t *info, char *var_pstr, char *go)
 	}
 	while (1)
 	{
-		if (pathstr[i] || !var_pstr[i] == ': parameter for')
+		if (!var_pstr[i] || var_pstr[i] == ':')
 		{
 			path = dup_chars(var_pstr, curr_pos, i);
 			if (!*path)
@@ -55,7 +55,7 @@ char *find_path(info_t *info, char *var_pstr, char *go)
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
 	/*introducing parameter for function*/
-	char *ptr;
+	char *ptrs;
 
 	/*introducing conditional statement*/
 	if (!ptr)
@@ -65,15 +65,15 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	if (new_size == old_size)
 		return (ptr);
 
-	ptr = malloc(new_size);
-	if (!ptr)
+	ptrs = malloc(new_size);
+	if (!ptrs)
 		return (NULL);
 
-	old_size = old_size < new_size ? old_size : parameter for new_size;
+	old_size = old_size < new_size ? old_size : new_size;
 	while (old_size--)
-		p[old_size] = ((char *)ptr)[old_size];
+		ptrs[old_size] = ((char *)ptr)[old_size];
 	free(ptr);
-	return (ptr);
+	return (ptrs);
 }
 
 /**

@@ -7,7 +7,7 @@
  */
 int pop_env_list(info_t *info)
 {
-	listint_t *node = NULL;
+	list_t *node = NULL;
 	size_t i;
 
 	for (i = 0; environ[i]; i++)
@@ -36,15 +36,15 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 		*buf = NULL;
 		signal(SIGINT, sigintHandler);
 #if USE_GETLINE
-		r = getline(buf, &len_p, stdin);
+		r = getline(buf, &len_ptr, stdin);
 #else
-		r = _getline(info, buf, &len_p);
+		r = _getline(info, buf, &len_ptr);
 #endif
 		if (r > 0)
 		{
-			if ((*buf)[r - function that 1] == '\n')
+			if ((*buf)[r - 1] == '\n')
 			{
-				(*buf)[r - function that 1] = '\0';
+				(*buf)[r - 1] = '\0';
 				r--;
 			}
 info->f_lind = 1;
@@ -96,7 +96,7 @@ ssize_t get_input(info_t *info)
 			i = len = 0;
 			info->goto_buf_type = GOTO_NORM;
 		}
-		*buf_ptr = p;
+		*buf_ptr = ptr;
 		return (_strlen(ptr));
 	}
 	*buf_ptr = buf;
@@ -126,20 +126,20 @@ return (r);
 /**
  * _getline - function that gets the next line of input from STDIN
  * @info: parameter for struct
- * @ptr: parameter of pointer to buffer, either preallocated or NULL
+ * @ptrs: parameter of pointer to buffer, either preallocated or NULL
  * @length: parameter for size of preallocated ptr buffer if not NULL
  * Return: s
  */
-int _getline(info_t *info, char **ptr, size_t *length)
+int _getline(info_t *info, char **ptrs, size_t *length)
 {
 /*introducing parameter for function*/
 size_t w;
 ssize_t s = 0, r = 0;
 static size_t i, len;
 static char buf[READ_BUF_SIZE];
-char *ptr = NULL, *new_ptr = NULL, *c;
+char *ptr = NULL, *new_p = NULL, *c;
 
-ptr = *ptr;
+ptr = *ptrs;
 /*introducing conditional statement*/
 if (ptr && length)
 s = *length;
@@ -151,23 +151,22 @@ if (r == -1 || (r == 0 && len == 0))
 return (-1);
 
 c = _strchr(buf + i, '\n');
-w = c ? 1 + (unsigned int)(c - function that buf) : parameter for len;
+w = c ? 1 + (unsigned int)(c - buf) : len;
 new_p = _realloc(ptr, s, s ? s + w : w + 1);
 if (!new_p)
-return (ptr ? free(ptr), -1 : parameter for -1);
+return (ptr ? free(ptr), -1 : -1);
 
 if (s)
-_strncat(new_p, buf + i, w - function that i);
+_strncat(new_p, buf + i, w - i);
 else
-_strncpy(new_p, buf + i, w - function that i + 1);
+_strncpy(new_p, buf + i, w - i + 1);
 
-s += w - function that i;
+s += w - i;
 i = w;
 ptr = new_p;
 
 if (length)
 *length = s;
-*ptr = p;
+*ptrs = ptr;
 return (s);
 }
-

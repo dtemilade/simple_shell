@@ -1,19 +1,19 @@
 #ifndef _SHELL_H_
 #define _SHELL_H_
 extern char **environ;
-#define HIST_FILE".simple_shell_history"
-#define HIST_MAX4096
-#define CONVERT_LOWERCASE1
-#define CONVERT_UNSIGNED2
+#define HIST_FILE
+#define HIST_MAX 4096
+#define CONVERT_LOWERCASE 1
+#define CONVERT_UNSIGNED 2
 #define READ_BUF_SIZE 1024
 #define WRITE_BUF_SIZE 1024
-#define BUF_FLUSH -1	
+#define BUF_FLUSH -1
 #define USE_GETLINE 0
 #define USE_STRTOW 0
-#define GOTO_NORM0
-#define GOTO_OR1
-#define GOTO_AND2
-#define GOTO_CHAIN3
+#define GOTO_NORM 0
+#define GOTO_OR 1
+#define GOTO_AND 2
+#define GOTO_CHAIN 3
 #define INFO_INIT \
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
 0, 0, 0}
@@ -28,18 +28,20 @@ extern char **environ;
 #include <unistd.h>
 #include <string.h>
 /**
- * struct listint_s - function for singly linked list
- * @n: parameter for integer
+ * struct list_s - function for singly linked list
+ * @num: parameter for integer
+ * @str: parameter for string
  * @next: parameter for points to the next node
  *
  * Description: singly linked list node structure
  *
  */
-typedef struct listint_s
+typedef struct list_s
 {
-int n;
-struct listint_s *next;
-} listint_t;
+int num;
+char *str;
+struct list_s *next;
+} list_t;
 
 /**
  * struct passinfo - function that contains pseudo-arguements
@@ -72,9 +74,9 @@ unsigned int var_ind;
 int err_num;
 int f_lind;
 char *val_f;
-listint_t *env;
-listint_t *history;
-listint_t *alias;
+list_t *env;
+list_t *history;
+list_t *alias;
 char **environ;
 int env_changed;
 int status;
@@ -119,24 +121,24 @@ int view_history(info_t *info);
 int pop_env_list(info_t *);
 char **get_environ(info_t *);
 int _unsetenv(info_t *, char *);
-listint_t *addn_end(listint_t **, const char *, int);
+list_t *addn_end(list_t **, const char *, int);
 int _setenv(info_t *, char *, char *);
 int _strlen(char *);
 char *get_history_file(info_t *info);
 int build_history_list(info_t *info, char *buf, int var_c);
 int hist_num(info_t *info);
-listint_t *add_node(listint_t **, const char *, int);
+list_t *add_node(list_t **, const char *, int);
 int _grpfnshelp(info_t *);
 int _grpfnshistory(info_t *);
 void check_chain(info_t *, char *, size_t *, size_t, size_t);
-size_t print_list(const listint_t *);
-size_t print_list_str(const listint_t *);
-size_t list_len(const listint_t *);
-char **list_to_strings(listint_t *);
-void free_list(listint_t **);
-ssize_t getn_index(listint_t *, listint_t *);
-listint_t *node_starts_with(listint_t *, char *, char);
-int deleten_at_index(listint_t **, unsigned int);
+size_t print_list(const list_t *);
+size_t print_list_str(const list_t *);
+size_t list_len(const list_t *);
+char **list_to_strings(list_t *);
+void free_list(list_t **);
+ssize_t getn_index(list_t *, list_t *);
+list_t *node_starts_with(list_t *, char *, char);
+int deleten_at_index(list_t **, unsigned int);
 int is_chain(info_t *, char *, size_t *);
 int find_builtin(info_t *);
 void clear_info(info_t *);

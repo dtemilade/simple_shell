@@ -103,7 +103,7 @@ return (i);
 int deleten_at_index(list_t **head, unsigned int index)
 {
 	/*introducing parameter for function*/
-	list_t *ptrrev_node, *node;
+	list_t *prev_node, *node;
 	unsigned int i = 0;
 
 	/*introducing conditional statement*/

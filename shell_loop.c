@@ -38,7 +38,7 @@ int hsh(info_t *info, char **av)
 	if (builtin_ret == -2)
 	{
 		if (info->err_num == -1)
-			exit(info->status)
+			exit(info->status);
 				exit(info->err_num);
 	}
 	return (builtin_ret);
@@ -100,7 +100,7 @@ void find_search(info_t *info)
 	if (!w)
 		return;
 
-	path = find_pat (info,_getenv(info,"PATH="), info->argv[0]);
+	path = find_path(info,_getenv(info,"PATH="), info->argv[0]);
 	if (path)
 	{
 		info->path = path;

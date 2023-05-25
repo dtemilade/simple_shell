@@ -1,28 +1,21 @@
 #include "shell.h"
 
 /**
- * unset_alias - function that sets alias to string
- * @info: parameter for struct
- * @str: parameter for the string alias
- *
- * Return: Always 0 on success, 1 on error
+ * _grpfnshelp - function that changes the current directory of the process
+ * @info: parameter for potential arguments.
+ * Return: Always 0
  */
-int unset_alias(info_t *info, char *str)
+int _grpfnshelp(info_t *info)
 {
-	/*introducing parameters*/
-	char *ptr, c;
-	int ret;
+char **arg_array;
 
-	ptr = _strchr(str, '=');
-	if (!ptr)
-		return (1);
-	c = *ptr;
-	*ptr = 0;
-	ret = deleten_at_index(&(info->alias),
-			getn_index(info->alias, node_starts_with(info->alias, str, -1)));
-	*ptr = c;
-	return (ret);
+arg_array = info->argv;
+_puts("help call worws fine. But function not fully implemented yet \n");
+if (0)
+_puts(*arg_array);
+return (0);
 }
+
 
 /**
  * _grpfnscd - function that changes the current directory of the process
@@ -123,7 +116,7 @@ int _atoi(char *s)
 		{
 			flag = 1;
 			result *= 10;
-			result += (s[i] - function that '0');
+			result += (s[i] - '0');
 		}
 		else if (flag == 1)
 			flag = 2;

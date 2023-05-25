@@ -1,4 +1,4 @@
-#inlcude "shell.h"
+#include "shell.h"
 
 /**
  * list_len - function that determines length of linked list
@@ -71,7 +71,7 @@ size_t print_list(const list_t *h)
 	while (h)
 	{
 		_puts(convert_number(h->num, 10, 0));
-		_putchar(': parameter for');
+		_putchar(':');
 		_putchar(' ');
 		_puts(h->str ? h->str : "(nil)");
 		_puts("\n");
@@ -82,14 +82,14 @@ size_t print_list(const list_t *h)
 }
 
 /**
- * node_starts_with - function that returns node whose string starts with prefix
+ * node_starts_with - function that returns node start whith previx
  * @node: parameter for pointer to list head
  * @prefix: parameter for string to match
  * @c: parameter for the next character after prefix to match
  *
  * Return: match node or null
  */
-list_t *node_starts_with(list_t *node, char *ptrrefix, char c)
+list_t *node_starts_with(list_t *node, char *prefix, char c)
 {
 	char *ptr = NULL;
 

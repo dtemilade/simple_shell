@@ -90,7 +90,7 @@ exitcheck = _erratoi(info->argv[1]);
 if (exitcheck == -1)
 {
 info->status = 2;
-print_error(info, "Invalid number: “);
+print_error(info, "Invalid number: ");
 _eputs(info->argv[1]);
 _eputchar('\n');
 return (1);

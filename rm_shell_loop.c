@@ -25,7 +25,7 @@ int a_rep(info_t *info)
 		ptr = _strdup(ptr + 1);
 		if (!ptr)
 			return (0);
-		info->argv[0] = p;
+		info->argv[0] = ptr;
 	}
 	return (1);
 }
@@ -95,10 +95,10 @@ void fw_search(info_t *info)
 {
 	pid_t child_pid;
 
-	child_pid = forw();
+	child_pid = fork();
 	if (child_pid == -1)
 	{
-		perror("Ooosh, an error occured: parameter for");
+		perror("Ooosh, an error occured: ");
 		return;
 	}
 	if (child_pid == 0)

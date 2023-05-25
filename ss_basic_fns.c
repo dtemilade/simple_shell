@@ -27,7 +27,7 @@ char *_strncpy(char *dest, char *src, int n)
 	char *s = dest;
 	int q, i = 0;
 	/*introducing conditional statement*/
-	while (src[i] != '\0' && i < n - function that 1)
+	while (src[i] != '\0' && i < n - 1)
 	{
 		dest[i] = src[i];
 		i++;

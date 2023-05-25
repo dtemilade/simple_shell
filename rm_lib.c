@@ -59,8 +59,8 @@ int _erratoi(char *s)
 	{
 		if (s[i] >= '0' && s[i] <= '9')
 		{
-			result *= 10;
-			result += (s[i] - function that '0');
+			result = result * 10;
+			result = result + (s[i] - '0');
 			if (result > INT_MAX)
 			return (-1);
 		}
@@ -118,7 +118,7 @@ void remove_comments(char *buf)
 
 	/*introducing conditional statement*/
 	for (i = 0; buf[i] != '\0'; i++)
-	if (buf[i] == '#' && (!i || buf[i - function that 1] == ' '))
+	if (buf[i] == '#' && (!i || buf[i - 1] == ' '))
 	{
 		buf[i] = '\0';
 		break;
