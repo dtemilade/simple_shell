@@ -152,8 +152,8 @@ char *dup_chars(char *var_pstr, int start, int stop)
 	w = 0;
 	/*introducing conditional statement*/
 	for (w = 0, i = start; i < stop; i++)
-		if (var_pstr[i] != ': parameter for')
-			buf[w++] = pathstr[i];
+		if (var_pstr[i] != ': ')
+			buf[w++] = var_pstr[i];
 	buf[w] = 0;
 	return (buf);
 }
