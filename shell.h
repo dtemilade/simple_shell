@@ -1,7 +1,7 @@
 #ifndef _SHELL_H_
 #define _SHELL_H_
 extern char **environ;
-#define HIST_FILE
+#define HIST_FILE ".simple_shell_history"
 #define HIST_MAX 4096
 #define CONVERT_LOWERCASE 1
 #define CONVERT_UNSIGNED 2
