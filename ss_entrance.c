@@ -26,7 +26,7 @@ int main(int ac, char **av)
 			if (errno == ENOENT)
 			{
 				_eputs(av[0]);
-				_eputs(": parameter for 0: parameter for Can't open ");
+				_eputs(": 0: Can't open ");
 				_eputs(av[1]);
 				_eputchar('\n');
 				_eputchar(BUF_FLUSH);
