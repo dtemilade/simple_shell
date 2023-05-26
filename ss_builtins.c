@@ -24,12 +24,10 @@ return (0);
  */
 int _grpfnscd(info_t *info)
 {
-	/*introducing parameters*/
 	char *s, *dir, buffer[1024];
 	int chdir_ret;
 
 	s = getcwd(buffer, 1024);
-	/*introducing conditional statement*/
 	if (!s)
 		_puts("TODO: parameter for>>getcwd failure emsg here<<\n");
 	if (!info->argv[1])
@@ -126,6 +124,5 @@ int _atoi(char *s)
 		output = -result;
 	else
 		output = result;
-	
 	return (output);
 }

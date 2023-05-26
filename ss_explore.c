@@ -61,20 +61,15 @@ int create_history(info_t *info)
  */
 int view_history(info_t *info)
 {
-	/*introducing parameter for function*/
 	struct stat st;
 	char *buf = NULL, *filename = get_history_file(info);
 	int i, var_c, last;
-	ssize_t fd, var_s, var_len;
+	ssize_t fd, var_s = 0, var_len;
 
 	var_c = 0;
 	last = 0;
-	var_s = 0;
-
-	/*introducing conditional statement*/
 	if (!filename)
 	return (0);
-
 	fd = open(filename, O_RDONLY);
 	free(filename);
 	if (fd == -1)
@@ -107,7 +102,6 @@ int view_history(info_t *info)
 	hist_num(info);
 	return (info->ind_hist);
 }
-
 /**
  * build_history_list - function that adds entry to a history linked list
  * @info: parameter for structure.

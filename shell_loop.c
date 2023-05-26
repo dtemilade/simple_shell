@@ -100,7 +100,7 @@ void find_search(info_t *info)
 	if (!w)
 		return;
 
-	path = find_path(info,_getenv(info,"PATH="), info->argv[0]);
+	path = find_path(info, _getenv(info, "PATH="), info->argv[0]);
 	if (path)
 	{
 		info->path = path;
@@ -122,7 +122,7 @@ void find_search(info_t *info)
 /**
  * is_chain - function that test if current char in buffer is a chain delimeter
  * @info: parameter for the parameter struct
-* @p: parameter of current position in buf
+ * @ptr: parameter of current position in buf
  * @buf: parameter for the char buffer
  * Return: 1 if chain delimeter, 0 otherwise
  */
@@ -156,11 +156,11 @@ int is_chain(info_t *info, char *buf, size_t *ptr)
 }
 
 /**
- * check_chain - function that checks we should continue chaining based on last status
+ * check_chain - function that checks to continue chaining based on last status
  * @info: parameter for the parameter struct
  * @buf: parameter for the char buffer
-* @i: parameter for starting position in buf
- * @p: parameter of current position in buf
+ * @i: parameter for starting position in buf
+ * @ptr: parameter of current position in buf
  * @len: parameter for length of buf
 * Return: Void
  */

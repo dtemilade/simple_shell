@@ -48,7 +48,7 @@ return (ret);
 /**
  * set_alias - function that sets alias to string
  * @info: parameter for struct
- * @str: parameter forstring 
+ * @str: parameter forstring
  *
  * Return: Always 0 on success, 1 on error
  */
